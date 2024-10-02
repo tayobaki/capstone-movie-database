@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
 	return (
-		<a
-			href={`/movie/${encodeURIComponent(movie.Title)}`}
+		<Link
+			to={`/movie/${encodeURIComponent(movie.Title)}`}
 			className=" cursor-pointer"
 		>
 			<img
@@ -17,7 +17,7 @@ function MovieCard({ movie }) {
 				</h1>
 				<span className="text-sm">{movie.Year}</span>
 			</div>
-		</a>
+		</Link>
 	);
 }
 
