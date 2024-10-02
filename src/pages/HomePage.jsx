@@ -11,9 +11,7 @@ function HomePage() {
 	const [error, setError] = useState("");
 	const [page, setPage] = useState(1);
 
-	const endpoint = `https://www.omdbapi.com/?apiKey=${
-		import.meta.env.VITE_OMDB_API_KEY
-	}&s=${query}&Page=${page}`;
+	const endpoint = `https://www.omdbapi.com/?apiKey=d9d50b24&s=${query}&Page=${page}`;
 
 	const fetchData = async () => {
 		setLoading(true);

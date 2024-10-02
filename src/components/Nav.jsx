@@ -1,5 +1,5 @@
 import movie from "/movie.svg";
-import favorites from "/favorites.svg";
+import favorite from "/favorites.svg";
 
 export default function Nav() {
 	const favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies"));
@@ -9,7 +9,7 @@ export default function Nav() {
 				<img src={movie} alt="musicLogo" className="size-[50px] " />
 			</a>
 			<a href="/favorites" className="relative">
-				<img src={favorites} alt="favoritesLogo" className="size-[50px] " />
+				<img src={favorite} alt="favoritesLogo" className="size-[50px] " />
 				{favoriteMovies && (
 					<div className="size-3 absolute top-0 -right-1 bg-blue-500 rounded-full animate-pulse duration-300" />
 				)}
