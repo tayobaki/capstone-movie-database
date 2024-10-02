@@ -11,7 +11,7 @@ function HomePage() {
 	const [error, setError] = useState("");
 	const [page, setPage] = useState(1);
 
-	const endpoint = `http://www.omdbapi.com/?apiKey=${
+	const endpoint = `https://www.omdbapi.com/?apiKey=${
 		import.meta.env.VITE_OMDB_API_KEY
 	}&s=${query}&Page=${page}`;
 
