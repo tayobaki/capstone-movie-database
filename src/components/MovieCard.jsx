@@ -2,7 +2,10 @@ import React from "react";
 
 function MovieCard({ movie }) {
 	return (
-		<a href={`/${movie.Type}/${movie.Title}`} className=" cursor-pointer">
+		<a
+			href={`/movie/${encodeURIComponent(movie.Title)}`}
+			className=" cursor-pointer"
+		>
 			<img
 				src={movie.Poster}
 				alt={movie.Title}
