@@ -8,7 +8,6 @@ function HomePage() {
 	const [data, setData] = useState([]);
 	const [query, setQuery] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState("");
 	const [page, setPage] = useState(1);
 
 	const endpoint = `https://www.omdbapi.com/?apiKey=${
@@ -19,8 +18,7 @@ function HomePage() {
 		setLoading(true);
 		try {
 			const res = await axios.get(endpoint);
-			setData(res.data.Search);
-			setError(res.data.Error);
+			setData(res.data);
 		} catch (error) {
 			console.error("error", error?.response?.data?.Error);
 		} finally {
@@ -37,7 +35,6 @@ function HomePage() {
 		setPage(1);
 		fetchData();
 	};
-	console.log(error);
 
 	return (
 		<div className="text-white">
@@ -47,11 +44,13 @@ function HomePage() {
 				setQuery={setQuery}
 			/>
 
-			{error && (
-				<div className=" text-xl font-semibold mt-4 text-center">{error}</div>
+			{data?.Response === "False" && (
+				<div className=" text-xl font-semibold mt-4 text-center">
+					{data?.Error}
+				</div>
 			)}
 
-			{data?.length > 1 && (
+			{data?.Search?.length > 1 && (
 				<div className="flex items-center gap-6 w-full mt-8 max-w-5xl  mx-auto text-center justify-center">
 					<button
 						disabled={page <= 1}
@@ -76,11 +75,13 @@ function HomePage() {
 				</div>
 			)}
 
-			<div className=" grid xl:grid-cols-7  py-10 grid-cols-3 md:grid-cols-6 max-w-6xl mx-auto gap-x-2 gap-y-4 px-5 xl:px-0">
-				{data?.map((movie) => (
-					<MovieCard key={movie.imdbID} movie={movie} />
-				))}
-			</div>
+			{data?.Response === "True" && (
+				<div className=" grid xl:grid-cols-7  py-10 grid-cols-3 md:grid-cols-6 max-w-6xl mx-auto gap-x-2 gap-y-4 px-5 xl:px-0">
+					{data?.Search?.map((movie) => (
+						<MovieCard key={movie.imdbID} movie={movie} />
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

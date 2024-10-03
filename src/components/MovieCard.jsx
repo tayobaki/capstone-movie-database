@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function MovieCard({ movie }) {
 	return (
 		<Link
-			to={`/movie/${decodeURIComponent(movie.Title)}`}
+			to={`/${movie.Type}/${decodeURIComponent(movie.Title)}`}
 			className=" cursor-pointer"
 		>
 			<img
